@@ -1,6 +1,8 @@
 import express from "express";
 import { createServer } from "node:http";
 
+import 'dotenv/config';
+
 import { Server } from "socket.io";
 
 import mongoose from "mongoose";
@@ -24,7 +26,7 @@ app.use(express.urlencoded({ limit: "40kb", extended: true }));
 // });
 
 const start = async () => {
-    const connectionDb = await mongoose.connect("mongodb+srv://sauvikvideoapp:sauvik616@cluster0.yqdjhn4.mongodb.net/");
+    const connectionDb = await mongoose.connect(process.env.MONGODB_URI);
 
     console.log(`MongoDB connected to DB Host: ${connectionDb.connection.host}`);
 
